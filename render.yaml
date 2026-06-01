@@ -1,8 +1,8 @@
 services:
   - type: static_site
-    name: amazon-clone
+    name: amazon
     env: static
-    root: amazon-clone
+    root: Amazon
     buildCommand: npm install && npm run build
     publishPath: dist
     plan: free
