@@ -5,10 +5,13 @@ import Hero from './components/Hero'
 import ProductSlider from './components/ProductSlider'
 import Products from './components/Products'
 import ProductDetail from './components/ProductDetail'
+import Cart from './components/Cart'
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
+  const [cartItems, setCartItems] = useState([])
+  const [showCart, setShowCart] = useState(false)
 
   const products = [
     {
@@ -295,12 +298,67 @@ function App() {
     setSelectedProduct(null)
   }
 
+  const handleAddToCart = (product) => {
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.id === product.id)
+      
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      } else {
+        return [...prevItems, { ...product, quantity: 1 }]
+      }
+    })
+  }
+
+  const handleRemoveFromCart = (productId) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== productId))
+  }
+
+  const handleUpdateQuantity = (productId, newQuantity) => {
+    if (newQuantity < 1) return
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === productId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    )
+  }
+
+  const handleViewCart = () => {
+    setShowCart(true)
+    setSelectedProduct(null)
+  }
+
+  const handleCartBack = () => {
+    setShowCart(false)
+  }
+
   return (
     <div className="App">
-      <Header onSearch={handleSearch} />
+      <Header 
+        onSearch={handleSearch} 
+        cartCount={cartItems.length}
+        onViewCart={handleViewCart}
+      />
       
-      {selectedProduct ? (
-        <ProductDetail product={selectedProduct} onBack={handleBack} />
+      {showCart ? (
+        <Cart 
+          cartItems={cartItems}
+          onRemoveFromCart={handleRemoveFromCart}
+          onUpdateQuantity={handleUpdateQuantity}
+          onBack={handleCartBack}
+        />
+      ) : selectedProduct ? (
+        <ProductDetail 
+          product={selectedProduct} 
+          onBack={handleBack}
+          onAddToCart={handleAddToCart}
+        />
       ) : (
         <>
           <Hero />
@@ -308,6 +366,7 @@ function App() {
           <Products
             products={filteredProducts}
             onProductClick={handleProductClick}
+            onAddToCart={handleAddToCart}
           />
         </>
       )}

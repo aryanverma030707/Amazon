@@ -1,6 +1,6 @@
 import './Products.css'
 
-function Products({ products, onProductClick }) {
+function Products({ products, onProductClick, onAddToCart }) {
   const renderStars = (rating) => {
     return (
       <div className="stars">
@@ -45,12 +45,20 @@ function Products({ products, onProductClick }) {
                 <span className="shipping-badge">FREE delivery</span>
               </div>
 
-              <button
-                className="view-details-btn"
-                onClick={() => onProductClick(product)}
-              >
-                View Details
-              </button>
+              <div className="product-buttons">
+                <button
+                  className="view-details-btn"
+                  onClick={() => onProductClick(product)}
+                >
+                  View Details
+                </button>
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => onAddToCart(product)}
+                >
+                  🛒 Add to Cart
+                </button>
+              </div>
             </div>
           </div>
         ))}

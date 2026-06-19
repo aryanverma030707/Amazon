@@ -150,7 +150,14 @@
   font-weight: bold;
 }
 
+.product-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
 .view-details-btn {
+  flex: 1;
   background-color: #FF9900;
   border: 1px solid #FDB913;
   color: black;
@@ -167,6 +174,24 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.add-to-cart-btn {
+  flex: 1;
+  background-color: #FFA724;
+  border: 1px solid #FFA724;
+  color: black;
+  padding: 8px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #FF9500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 @media (max-width: 768px) {
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -175,6 +200,10 @@
 
   .product-image-container {
     height: 160px;
+  }
+
+  .product-buttons {
+    flex-direction: column;
   }
 }
 

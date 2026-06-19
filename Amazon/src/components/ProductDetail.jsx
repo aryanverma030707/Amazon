@@ -1,6 +1,6 @@
 import './ProductDetail.css'
 
-function ProductDetail({ product, onBack }) {
+function ProductDetail({ product, onBack, onAddToCart }) {
   const renderStars = (rating) => {
     return (
       <div className="stars">
@@ -55,6 +55,15 @@ function ProductDetail({ product, onBack }) {
               <span className="shipping-icon">🛡️</span>
               <span>Secure Transaction</span>
             </div>
+          </div>
+
+          <div className="detail-actions">
+            <button 
+              className="add-to-cart-btn"
+              onClick={() => onAddToCart(product)}
+            >
+              🛒 Add to Cart
+            </button>
           </div>
 
           <div className="detail-description">

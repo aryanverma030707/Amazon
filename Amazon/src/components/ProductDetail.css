@@ -154,6 +154,33 @@
   font-size: 24px;
 }
 
+.detail-actions {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 15px;
+  background: #F0F2F2;
+  border-radius: 8px;
+}
+
+.add-to-cart-btn {
+  flex: 1;
+  background-color: #FFA724;
+  border: 1px solid #FFA724;
+  color: black;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #FF9500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
 .detail-description {
   margin-top: 20px;
 }
